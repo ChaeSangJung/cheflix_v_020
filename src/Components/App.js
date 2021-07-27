@@ -1,13 +1,16 @@
-import React from "react";
-import GlobalStyles from "Components/GlobalStyles";
+import React, { Component } from "react";
 import Routers from "Components/Routers";
-const App = ()=> {
-  return (
-    <>
-      <Routers />
-      <GlobalStyles />
-    </>
-  )
+import GlobalStyles from "Components/GlobalStyles";
+
+class App extends Component {
+  render() {
+    return (
+      <>
+        <Routers />
+        <GlobalStyles />
+      </>
+    );
+  }
 }
 
 export default App;

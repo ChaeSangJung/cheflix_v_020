@@ -23,9 +23,9 @@ const Routers = () => {
           <Route path="/" exact component={Home} />
           <Route path="/tv" component={TV} />
           <Route path="/search" component={Search} />
+          <Route path="/now_more" component={More} />
           <Route path="/movie/:id" component={Detail} />
           <Route path="/show/:id" exact component={Detail} />
-          <Route path="/now_more" component={More} />
           <Route path="/show/:id/season_number/:season_number" exact component={Season} />
           <Route path="/person/:id" component={Person} />
           <Redirect from="*" to="/" />
@@ -36,3 +36,5 @@ const Routers = () => {
 }
 
 export default Routers;
+
+
