@@ -72,6 +72,9 @@ const HomeContainer = () => {
             loading={loading}
             nowSwipe={nowSwipe}
             upSwipe={upSwipe}
+            nowPlaying={nowPlaying}
+            upcoming={upcoming}
+            popular={popular}
         />
     )
 }

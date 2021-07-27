@@ -13,8 +13,8 @@ SwiperCore.use([Navigation, Pagination, Autoplay]);
 
 const WrapVisual = styled.div``
 
-const HomePresenter = ({error, loading, nowSwipe, upSwipe}) => {
-    
+const HomePresenter = ({error, loading, nowSwipe, upSwipe, nowPlaying, upcoming, popular}) => {
+    console.log(nowPlaying, upcoming, popular,error)    
     return (
         <>
             <Helmet title="Movies | Cheflix"/>
