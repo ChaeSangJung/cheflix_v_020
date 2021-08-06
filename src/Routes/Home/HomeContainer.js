@@ -6,8 +6,10 @@ const HomeContainer = () => {
     const [nowPlaying, setNow] = useState([]);
     const [upcoming, setUpcoming] = useState([]);
     const [popular, setPopular] = useState([]);
+    const [checking, setChecking] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState();
+    const [type, setType] = useState("");
 
     const [nowSwipe, setNowSwipe] = useState({
         "title" : "",
@@ -17,6 +19,8 @@ const HomeContainer = () => {
         "title" : "",
         "arr" : []
     });
+    const [isCheck, setCheck] = useState(false);
+    const [value_black, setValue] = useState()
 
     const LoadPage = async ()=> {
         const {
@@ -65,8 +69,69 @@ const HomeContainer = () => {
         LoadData();
         return LoadData();
       }, [LoadData]);
+    
+    // 검색
+    // const reGex = (keyword) => {
+    //     const reg_value = new RegExp(keyword, "gi");
+    //     return reg_value;
+    // }
+    useEffect(()=>{
+        const getData = () => {
+            // const xxx = reGex(value_black);
+            // let matchArray = nowPlaying.filter((now)=>(now.original_title.match(xxx)));
+            
+            if(checking.length === 0 && type === "genre") {
+                let matchArray = nowPlaying.filter((now)=>(now.genre_ids.includes(value_black)));
+                setChecking(matchArray)
+                console.log("true", matchArray, "0")
+            } else if (checking.length > 0 && type === "genre") {
+                let matchArray = checking.filter((now)=>(now.genre_ids.includes(value_black)));
+                setChecking(matchArray)
+                console.log("true", matchArray, "> 0")
+            }
+            
+            setCheck("");
+        }
+        const getDate = () => {
+            setChecking([])
+            let unitArr = [];
+            const checes = Array.from(document.querySelectorAll(".chec"));
+            checes.forEach((chec)=>{
+                const { checked, value } = chec
+                const parseValue = parseInt(value);
+                if(unitArr.length === 0 && checked  && type === "genre") {
+                    let matchArray = nowPlaying.filter((now)=>(now.genre_ids.includes(parseValue)));
+                    unitArr = [...unitArr, ...matchArray]
+                    setChecking(unitArr);
+                } else if(unitArr.length > 0 && checked && type === "genre") {
+                    let matchArray = unitArr.filter((now)=>(now.genre_ids.includes(parseValue)));
+                    setChecking(matchArray);
+                }
+            })
+            setCheck("");
+        }
+        if(isCheck === "true") {
+            getData();
+        } else if (isCheck === "false") {
+            getDate();
+        }
+    },[isCheck, value_black, nowPlaying, checking, type]);
+
+    const handleCheck = (event) => {
+        const { target : {value, checked, dataset : {type}} } = event;
+        setType(type);
+
+        const value_parse = parseInt(value)
+        if(checked) {
+            setCheck("true");
+            setValue(value_parse)
+        } else {
+            setCheck("false");
+        }
+    }
 
     return (
+        
         <HomePresenter 
             error={error}
             loading={loading}
@@ -75,6 +140,8 @@ const HomeContainer = () => {
             nowPlaying={nowPlaying}
             upcoming={upcoming}
             popular={popular}
+            handleCheck={handleCheck}
+            checking={checking}
         />
     )
 }
