@@ -17,7 +17,7 @@ const Container = styled.div`
   padding: 20px;
 `;
 
-const HomePresenter = ({error, loading, nowSwipe, upSwipe, nowPlaying, upcoming, popular ,handleCheck, checking}) => {
+const HomePresenter = ({error, loading, nowSwipe, upSwipe, nowPlaying, upcoming, popular ,handleCheck, checking,type}) => {
     // console.log(upcoming, popular,error)    
     console.log(checking)
     return (
@@ -58,7 +58,7 @@ const HomePresenter = ({error, loading, nowSwipe, upSwipe, nowPlaying, upcoming,
                             <Section title="Now Playing" link="/now_more">
                                 <input className="chec" data-type = "genre" type="checkbox" value="35" onChange={handleCheck}/>
                                 <input className= "chec" data-type = "genre" type="checkbox" value="878" onChange={handleCheck}/>
-                                <input className="chec" data-type = "genre" type="checkbox" value="10751" onChange={handleCheck}/>
+                                <input className="chec" data-type = "xgenre" type="checkbox" value="10751" onChange={handleCheck}/>
                                 
                                 {nowPlaying.map((movie)=>(
                                     <div key={movie.id}>

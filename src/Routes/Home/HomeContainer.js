@@ -80,19 +80,31 @@ const HomeContainer = () => {
             // const xxx = reGex(value_black);
             // let matchArray = nowPlaying.filter((now)=>(now.original_title.match(xxx)));
             
-            if(checking.length === 0 && type === "genre") {
-                let matchArray = nowPlaying.filter((now)=>(now.genre_ids.includes(value_black)));
+            if(checking.length === 0) {
+                let matchArray = []
+                if(type === "genre") {
+                    matchArray = nowPlaying.filter((now)=>(now.genre_ids.includes(value_black)));
+                }
+                if(type === "type1") {
+                    // 
+                }
+                if(type === "type2") {
+                    // 
+                }
                 setChecking(matchArray)
                 console.log("true", matchArray, "0")
             } 
-            else if(checking.length === 0 && type === "type1") {
-                let matchArray = nowPlaying.filter((now)=>(now.genre_ids.includes(value_black)));
-                setChecking(matchArray)
-                console.log("true", matchArray, "0")
-            } 
-            
             else if (checking.length > 0 && type === "genre") {
-                let matchArray = checking.filter((now)=>(now.genre_ids.includes(value_black)));
+                let matchArray = []
+                if(type === "genre") {
+                    matchArray = nowPlaying.filter((now)=>(now.genre_ids.includes(value_black)));
+                }
+                if(type === "type1") {
+                    // 
+                }
+                if(type === "type2") {
+                    // 
+                }
                 setChecking(matchArray)
                 console.log("true", matchArray, "> 0")
             }
@@ -107,28 +119,41 @@ const HomeContainer = () => {
             checes.forEach((chec)=>{
                 const { checked, value } = chec;
                 chk = chk||checked;
-                console.log(chk)
-                const parseValue = parseInt(value);
-                if(unitArr.length === 0 && checked  && type === "genre") {
-                    let matchArray = nowPlaying.filter((now)=>(now.genre_ids.includes(parseValue)));
-                    unitArr = [...unitArr, ...matchArray]
-                    setChecking(unitArr);
-                } else if(unitArr.length > 0 && checked && type === "genre") {
-                    let matchArray = unitArr.filter((now)=>(now.genre_ids.includes(parseValue)));
-                    setChecking(matchArray);
-                } 
-                // else if(unitArr.length === 0 && checked && type === "type2") {
-                //     // ~~~~~
-                // }
-                // else if(unitArr.length === 0 && checked && type === "type3") {
-                //     // ~~~~~
-                // }
-                // else if(unitArr.length > 0 && checked && type === "type2") {
-                //     // ~~~~~
-                // } 
-                // else if(unitArr.length > 0 && checked && type === "type3") {
-                //     // ~~~~~
-                // } 
+                if(chk) {
+                    const parseValue = parseInt(value);
+                    if(unitArr.length === 0 && checked) {
+                        let matchArray = []
+                        if(type === "genre"){
+                            matchArray = nowPlaying.filter((now)=>(now.genre_ids.includes(parseValue)));
+                        } 
+                        else if (type === "type1") {
+                            // 
+                        }
+                        else if (type === "type2") {
+                            // 
+                        }
+                        
+                        unitArr = [...unitArr, ...matchArray]
+                        setChecking(unitArr);
+                    } else if(unitArr.length > 0 && checked) {
+                        let matchArray = []
+                        if(type === "genre"){
+                            matchArray = nowPlaying.filter((now)=>(now.genre_ids.includes(parseValue)));
+                        } 
+                        else if (type === "type1") {
+                            // 
+                        }
+                        else if (type === "type2") {
+                            // 
+                        }
+                        setChecking(matchArray);
+                    } 
+                    console.log("o")
+                } else {
+                    console.log("x")
+                    setChecking([]);
+                }
+                
             })
             setCheck("");
         }
