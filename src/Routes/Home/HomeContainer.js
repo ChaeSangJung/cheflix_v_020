@@ -84,7 +84,14 @@ const HomeContainer = () => {
                 let matchArray = nowPlaying.filter((now)=>(now.genre_ids.includes(value_black)));
                 setChecking(matchArray)
                 console.log("true", matchArray, "0")
-            } else if (checking.length > 0 && type === "genre") {
+            } 
+            else if(checking.length === 0 && type === "type1") {
+                let matchArray = nowPlaying.filter((now)=>(now.genre_ids.includes(value_black)));
+                setChecking(matchArray)
+                console.log("true", matchArray, "0")
+            } 
+            
+            else if (checking.length > 0 && type === "genre") {
                 let matchArray = checking.filter((now)=>(now.genre_ids.includes(value_black)));
                 setChecking(matchArray)
                 console.log("true", matchArray, "> 0")
@@ -96,8 +103,11 @@ const HomeContainer = () => {
             setChecking([])
             let unitArr = [];
             const checes = Array.from(document.querySelectorAll(".chec"));
+            let chk = false;
             checes.forEach((chec)=>{
-                const { checked, value } = chec
+                const { checked, value } = chec;
+                chk = chk||checked;
+                console.log(chk)
                 const parseValue = parseInt(value);
                 if(unitArr.length === 0 && checked  && type === "genre") {
                     let matchArray = nowPlaying.filter((now)=>(now.genre_ids.includes(parseValue)));
@@ -106,7 +116,19 @@ const HomeContainer = () => {
                 } else if(unitArr.length > 0 && checked && type === "genre") {
                     let matchArray = unitArr.filter((now)=>(now.genre_ids.includes(parseValue)));
                     setChecking(matchArray);
-                }
+                } 
+                // else if(unitArr.length === 0 && checked && type === "type2") {
+                //     // ~~~~~
+                // }
+                // else if(unitArr.length === 0 && checked && type === "type3") {
+                //     // ~~~~~
+                // }
+                // else if(unitArr.length > 0 && checked && type === "type2") {
+                //     // ~~~~~
+                // } 
+                // else if(unitArr.length > 0 && checked && type === "type3") {
+                //     // ~~~~~
+                // } 
             })
             setCheck("");
         }
