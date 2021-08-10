@@ -9,3 +9,8 @@
     - [ ] popular
 - more
     - [ ] button click show next page
+
+- img src, background url
+    - public > Images
+    - src="/Images/logo192.png"
+    - url("/Images/logo192.png");

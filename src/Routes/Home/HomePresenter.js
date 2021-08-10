@@ -17,9 +17,9 @@ const Container = styled.div`
   padding: 20px;
 `;
 
-const HomePresenter = ({error, loading, nowSwipe, upSwipe, nowPlaying, upcoming, popular ,handleCheck, checking,type}) => {
-    // console.log(upcoming, popular,error)    
-    console.log(checking)
+// const HomePresenter = ({error, loading, nowSwipe, upSwipe, nowPlaying, upcoming, popular ,handleCheck, checking,type}) => {
+const HomePresenter = ({error, loading, nowSwipe, upSwipe, nowPlaying, upcoming, popular }) => {
+    // console.log(upcoming, popular,error)
     return (
         <>
             <Helmet title="Movies | Cheflix"/>
@@ -56,9 +56,9 @@ const HomePresenter = ({error, loading, nowSwipe, upSwipe, nowPlaying, upcoming,
                     <Container>
                         {nowPlaying && nowPlaying.length > 0 && (
                             <Section title="Now Playing" link="/now_more">
-                                <input className="chec" data-type = "genre" type="checkbox" value="35" onChange={handleCheck}/>
+                                {/* <input className="chec" data-type = "genre" type="checkbox" value="35" onChange={handleCheck}/>
                                 <input className= "chec" data-type = "genre" type="checkbox" value="878" onChange={handleCheck}/>
-                                <input className="chec" data-type = "xgenre" type="checkbox" value="10751" onChange={handleCheck}/>
+                                <input className="chec" data-type = "xgenre" type="checkbox" value="10751" onChange={handleCheck}/> */}
                                 
                                 {nowPlaying.map((movie)=>(
                                     <div key={movie.id}>
@@ -74,7 +74,6 @@ const HomePresenter = ({error, loading, nowSwipe, upSwipe, nowPlaying, upcoming,
                     </Container>
                 </>
             )}
-            
         </>
         
     )
